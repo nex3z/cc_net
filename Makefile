@@ -149,13 +149,13 @@ bin/lmplz: third_party/kenlm
 	mkdir -p $(@D)
 	mkdir -p $</build
 	(cd $</build && cmake ..)
-	make -C $</build -j2
+	make CXXFLAGS='-std=c++11' -C $</build -j2
 	mv $</build/bin/lmplz $</build/bin/build_binary $(@D)
 
 third_party/sentencepiece:
 	# Download sentencepiece sources: https://github.com/google/sentencepiece
 	mkdir -p $(@D)
-	wget -c -O $(@D)/sentencepiece.zip https://github.com/google/sentencepiece/archive/v0.1.83.zip
+	wget -c -O $(@D)/sentencepiece.zip https://github.com/google/sentencepiece/archive/v0.1.99.zip
 	unzip -o -d $(@D) $(@D)/sentencepiece.zip
 	rm $(@D)/sentencepiece.zip
 	# remove the version id from the folder name
